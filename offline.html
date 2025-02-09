@@ -10,17 +10,35 @@
     <h1>Pas de connexion Internet</h1>
     <p>Veuillez vérifier votre connexion et réessayer.</p>
     <button id="refresh">Actualiser</button>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pas de connexion</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Pas de connexion Internet</h1>
+    <p>Veuillez vérifier votre connexion et réessayer.</p>
+    <button id="refresh">Actualiser</button>
     <script>
     document.getElementById("refresh").addEventListener("click", function() {
-        if (navigator.onLine) {
-            // Si l'utilisateur est en ligne, changer de page
-            window.location.href = "https://fazeplayyt.github.io/Bibliam/";  // Remplace par l'URL vers laquelle tu veux rediriger
-        } else {
-            // Si l'utilisateur est hors ligne, recharger la page
-            location.reload();
-            .catch(() => alert("Toujours hors ligne"));
-        }
+        // Essayer de faire une requête à un serveur distant pour tester la connexion
+        fetch("https://www.google.com", { method: "HEAD", cache: "no-store" })
+            .then(() => {
+                // Si la requête réussit, l'utilisateur est connecté, donc on change de page
+                window.location.href = "https://fazeplayyt.github.io/Bibliam/";  // Remplace par l'URL vers laquelle tu veux rediriger
+            })
+            .catch(() => {
+                // Si la requête échoue, cela signifie qu'il n'y a pas de connexion
+                location.reload();  // Recharger la page
+            });
     });
+    </script>
+</body>
+</html>
+
     </script>
 </body>
 </html>
