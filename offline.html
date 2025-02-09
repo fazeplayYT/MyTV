@@ -11,27 +11,11 @@
     <p>Veuillez vérifier votre connexion et réessayer.</p>
     <button id="refresh">Actualiser</button>
 
-    <script>
+     <script>
     document.getElementById("refresh").addEventListener("click", function() {
-        // D'abord, tester si l'utilisateur est en ligne avec navigator.onLine
         if (navigator.onLine) {
-            // Essayer de faire une requête pour confirmer la connexion
-            fetch("https://www.google.com", { method: "HEAD", cache: "no-store" })
-                .then(response => {
-                    if (response.ok) {
-                        // Si la requête réussit, l'utilisateur est bien connecté
-                        window.location.href = "https://fazeplayyt.github.io/Bibliam";  // Remplace par l'URL vers laquelle tu veux rediriger
-                    } else {
-                        // Si la réponse n'est pas OK, recharger la page
-                        location.reload();
-                    }
-                })
-                .catch(() => {
-                    // Si la requête échoue, recharger la page
-                    location.reload();
-                });
+            document.location.href="https://fazeplayyt.github.io/Bibliam"; 
         } else {
-            // Si l'utilisateur n'est pas en ligne, recharger la page
             location.reload();
         }
     });
