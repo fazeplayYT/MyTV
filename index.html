@@ -18,5 +18,12 @@
     <h1>Bienvenue sur mon application</h1>
     <p>Cette application fonctionne en mode plein écran.</p>
     <noscript>Veuillez activer JavaScript pour utiliser cette application.</noscript>
+    <script>
+        window.addEventListener('load', function () {
+            if (!navigator.onLine) {
+                window.location.href = "offline.html";
+            }
+        });
+    </script>
 </body>
 </html>
