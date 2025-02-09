@@ -9,6 +9,18 @@
 <body>
     <h1>Pas de connexion Internet</h1>
     <p>Veuillez vérifier votre connexion et réessayer.</p>
-    <button document.location.href="https://fazeplayyt.github.io/Bibliam/"()">Actualiser</button>
+    <<button id="refresh">Actualiser</button>
+    <script>
+    document.getElementById("refresh").addEventListener("click", function() {
+        if (navigator.onLine) {
+            // Si l'utilisateur est en ligne, changer de page
+            window.location.href = "https://fazeplayyt.github.io/Bibliam/";  // Remplace par l'URL vers laquelle tu veux rediriger
+        } else {
+            // Si l'utilisateur est hors ligne, recharger la page
+            location.reload();
+            .catch(() => alert("Toujours hors ligne"));
+        }
+    });
+    </script>
 </body>
 </html>
