@@ -13,12 +13,28 @@ body {
 h1 {
     color: #dc3545;
     font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h1::before {
+    content: "⚠️";
+    font-size: 28px;
 }
 
 p {
     color: #6c757d;
     font-size: 18px;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+p::before {
+    content: "📶";
+    font-size: 24px;
 }
 
 button {
@@ -30,6 +46,14 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+button::before {
+    content: "🔄";
+    font-size: 18px;
 }
 
 button:hover {
