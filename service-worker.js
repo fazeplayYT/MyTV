@@ -3,7 +3,8 @@ const ASSETS = [
     "./",
     "./index.html",
     "./offline.html",
-    "./styles.css"
+    "./styles.css",
+    "./offline.css"
 ];
 
 self.addEventListener("install", event => {
