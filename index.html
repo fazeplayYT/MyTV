@@ -1,29 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Mon App PWA</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="manifest" href="manifest.json">
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('service-worker.js').catch(error => console.error('Service Worker registration failed:', error));
-        }
-    </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PWA Media & IPTV (Demo)</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0b4f6c" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- HLS.js pour lire les .m3u8 dans les navigateurs qui n'ont pas support natif -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.0/dist/hls.min.js" defer></script>
+  <script src="app.js" defer></script>
 </head>
 <body>
-    <h1>Bienvenue sur mon application</h1>
-    <p>Cette application fonctionne en mode plein écran.</p>
-    <noscript>Veuillez activer JavaScript pour utiliser cette application.</noscript>
-    <script>
-        window.addEventListener('load', function () {
-            if (!navigator.onLine) {
-                window.location.href = "offline.html";
-            }
-        });
-    </script>
+  <main id="app">
+
+    <!-- Login -->
+    <section id="login-screen" class="card">
+      <h1>Connexion (demo)</h1>
+      <form id="login-form">
+        <label>
+          Utilisateur
+          <input type="text" id="username" required autocomplete="username" />
+        </label>
+        <label>
+          Mot de passe
+          <input type="password" id="password" required autocomplete="current-password" />
+        </label>
+        <div class="row">
+          <button type="submit" id="login-btn">Se connecter</button>
+          <button type="button" id="register-btn">Créer (démo)</button>
+        </div>
+        <p class="muted">Les comptes sont stockés localement pour cette démo.</p>
+      </form>
+    </section>
+
+    <!-- Main app -->
+    <section id="main-screen" class="hidden">
+      <header class="topbar">
+        <h2 id="welcome">Bonjour</h2>
+        <div>
+          <button id="logout-btn" class="ghost">Déconnexion</button>
+        </div>
+      </header>
+
+      <div class="content-grid">
+        <aside class="card sidebar">
+          <h3>IPTV / Lecteur</h3>
+          <label>
+            Titre / étiquette
+            <input id="stream-title" placeholder="Ex : Chaîne 1" />
+          </label>
+          <label>
+            URL du flux (m3u8 ou mp4)
+            <input id="stream-url" placeholder="https://exemple/stream.m3u8" />
+          </label>
+          <div class="row">
+            <button id="play-stream">Lire</button>
+            <button id="save-stream" class="ghost">Ajouter aux favoris</button>
+          </div>
+
+          <h4>Favoris IPTV</h4>
+          <ul id="iptv-list" class="list"></ul>
+        </aside>
+
+        <section class="card player-area">
+          <h3>Lecteur</h3>
+          <video id="video" controls playsinline></video>
+          <p id="player-info" class="muted">Ajoute une URL puis clique sur Lire.</p>
+        </section>
+
+        <section class="card history-area">
+          <h3>Historique</h3>
+          <form id="add-history-form" class="row">
+            <input id="history-title" placeholder="Titre film / série" />
+            <input id="history-note" placeholder="Saison/Episode ou note (optionnel)" />
+            <button type="submit">Ajouter</button>
+          </form>
+          <ul id="history-list" class="list"></ul>
+          <div class="row">
+            <button id="clear-history" class="ghost">Effacer l'historique</button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <footer class="small muted">PWA demo — sans backend. Utilisation éducative uniquement.</footer>
+  </main>
 </body>
 </html>
